@@ -3,17 +3,22 @@ app: exchange-rate-api
 service: exchange-rate-api
 frameworkVersion: '3'
 
+useDotenv: true
+
 plugins:
   - serverless-esbuild
 
 provider:
   name: aws
   runtime: nodejs18.x
+  region: eu-west-3
+  environment:
+    FREE_CURRENCY_API_KEY: ${env:FREE_CURRENCY_API_KEY}
 
 functions:
-  api:
-    handler: index.handler
+  convert:
+    handler: src/handlers/convert.handler
     events:
       - httpApi:
-          path: /
-          method: get
+          path: /convert
+          method: post
