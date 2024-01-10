@@ -4,3 +4,9 @@ jspm_packages
 
 # Serverless directories
 .serverless
+
+# env files
+.env
+
+# build output
+.esbuild
